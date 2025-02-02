@@ -26,3 +26,6 @@ CSS – Styling and layout
 GSAP (GreenSock Animation Platform) – For smooth animations
 Three.js – For 3D graphics
 JavaScript – For interactivity and animations
+
+*OUTPUT*:
+![Image](https://github.com/user-attachments/assets/0e9479b7-ab3e-4554-adbb-72e4fdf270df)
