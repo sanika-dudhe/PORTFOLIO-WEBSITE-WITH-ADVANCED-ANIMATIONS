@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Website</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1 class="title">Welcome to My Portfolio</h1>
+    </header>
+    <section class="content">
+        <div id="three-container"></div>
+        <p class="description">I am a Web Developer with a passion for animations and interactivity.</p>
+        <button id="animate-btn">Animate</button>
+    </section>
+    <script>
+        gsap.from(".title", {duration: 1.5, y: -50, opacity: 0, ease: "bounce"});
+        gsap.from(".description", {duration: 1.5, x: -50, opacity: 0, delay: 0.5});
+
+        document.getElementById("animate-btn").addEventListener("click", function() {
+            gsap.to(".description", {duration: 1, scale: 1.2, yoyo: true, repeat: 1});
+        });
+
+        // Three.js Basic Scene
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById("three-container").appendChild(renderer.domElement);
+
+        const geometry = new THREE.BoxGeometry();
+        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        const cube = new THREE.Mesh(geometry, material);
+        scene.add(cube);
+
+        camera.position.z = 5;
+        function animate() {
+            requestAnimationFrame(animate);
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+            renderer.render(scene, camera);
+        }
+        animate();
+    </script>
+</body>
+</html>
